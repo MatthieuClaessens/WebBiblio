@@ -1,4 +1,4 @@
-package com.example.app.model;
+package com.webbiblio.model;
 
 import jakarta.persistence.*;
 

@@ -1,6 +1,6 @@
-package com.example.app.dao;
+package com.webbiblio.dao;
 
-import com.example.app.model.User;
+import com.webbiblio.model.User;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;

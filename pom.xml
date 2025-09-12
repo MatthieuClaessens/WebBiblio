@@ -72,7 +72,7 @@
     </dependencies>
 
     <build>
-        <finalName>jakarta-tomcat-app</finalName>
+        <finalName>webbiblio</finalName>
         <plugins>
             <!-- Plugin WAR -->
             <plugin>

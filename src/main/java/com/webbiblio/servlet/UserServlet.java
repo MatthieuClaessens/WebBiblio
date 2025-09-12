@@ -1,7 +1,7 @@
-package com.example.app.servlet;
+package com.webbiblio.servlet;
 
-import com.example.app.dao.UserDAO;
-import com.example.app.model.User;
+import com.webbiblio.dao.UserDAO;
+import com.webbiblio.model.User;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;

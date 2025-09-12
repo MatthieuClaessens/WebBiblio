@@ -32,7 +32,7 @@ services:
       - "8080:8080"
     volumes:
       # On monte le WAR généré par Maven
-      - ./target/jakarta-tomcat-app.war:/usr/local/tomcat/webapps/jakarta-tomcat-app.war
+      - ./target/webbiblio.war:/usr/local/tomcat/webapps/webbiblio.war
 
 volumes:
   pgdata:
