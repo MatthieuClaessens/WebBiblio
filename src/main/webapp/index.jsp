@@ -2,7 +2,7 @@
 <%@ taglib uri="jakarta.tags.core" prefix="c" %>
 <!-- Page JSP simple affichant la liste des utilisateurs et un formulaire d'ajout -->
 <html>
-<head><title>Users</title></head>
+<head><title>Bibliothèque</title></head>
 <body>
 <h2>Add User</h2>
 <form method="post" action="users">
