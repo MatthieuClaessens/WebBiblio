@@ -4,13 +4,13 @@
 <html>
 <head><title>Library</title></head>
 <body>
-<h2>Add User</h2>
+<h2>Ajouter un auteur</h2>
 <form method="post" action="users">
     <input type="text" name="name" placeholder="Name"/>
     <button type="submit">Save</button>
 </form>
 
-<h2>User List</h2>
+<h2>Liste d'auteur</h2>
 <ul>
     <c:forEach var="user" items="${users}">
         <li>${user.name}</li>
