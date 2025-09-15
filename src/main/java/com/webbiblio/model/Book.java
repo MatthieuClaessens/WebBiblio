@@ -1,3 +1,5 @@
+// Objet Book
+
 package com.webbiblio.model;
 
 import jakarta.persistence.*;
