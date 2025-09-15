@@ -1,3 +1,5 @@
+// Communication de données User sur la base de données
+
 package com.webbiblio.dao;
 
 import com.webbiblio.model.User;

@@ -1,3 +1,5 @@
+// Communication de données Book sur la base de données
+
 package com.webbiblio.dao;
 
 import com.webbiblio.model.Book;

@@ -1,3 +1,5 @@
+// Objet User
+
 package com.webbiblio.model;
 
 import jakarta.persistence.*;
