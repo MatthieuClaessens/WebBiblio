@@ -1,3 +1,6 @@
+// Servlet UserServlet servant de contrôleur pour gérer les requêtes HTTP provenant des pages JSP
+// Elle communique avec la couche DAO pour manipuler les objets Book
+// et transmet les données aux JSP pour affichage ou saisie.
 package com.webbiblio.servlet;
 
 import com.webbiblio.dao.UserDAO;
@@ -13,7 +16,7 @@ import java.util.List;
 // Servlet contrôleur MVC
 @WebServlet("/users")
 public class UserServlet extends HttpServlet {
-	
+
 	// Identifiant de version de sérialisation généré manuellement.
 	// Recommandé pour toutes les classes qui héritent de HttpServlet (implémente Serializable).
 	// Cela permet d’éviter des incompatibilités lors de la désérialisation si la classe évolue.
@@ -26,7 +29,7 @@ public class UserServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<User> users = userDAO.findAll();
         req.setAttribute("users", users);
-        req.getRequestDispatcher("/index.jsp").forward(req, resp);
+        req.getRequestDispatcher("/auteur/list.jsp").forward(req, resp);
     }
 
     // POST = ajouter un utilisateur
@@ -36,6 +39,6 @@ public class UserServlet extends HttpServlet {
         if (name != null && !name.isEmpty()) {
             userDAO.save(new User(name));
         }
-        resp.sendRedirect(req.getContextPath() + "/users");
+        resp.sendRedirect(req.getContextPath() + "/auteur/form.jsp");
     }
 }
