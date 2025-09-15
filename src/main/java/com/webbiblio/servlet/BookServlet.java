@@ -1,3 +1,7 @@
+// Servlet BookServlet servant de contrôleur pour gérer les requêtes HTTP provenant des pages JSP
+// Elle communique avec la couche DAO pour manipuler les objets Book
+// et transmet les données aux JSP pour affichage ou saisie.
+
 package com.webbiblio.servlet;
 
 import com.webbiblio.dao.BookDAO;
@@ -27,7 +31,7 @@ public class BookServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Book> books = bookDAO.findAll();
         req.setAttribute("books", books);
-        req.getRequestDispatcher("/index.jsp").forward(req, resp);
+        req.getRequestDispatcher("livre/list.jsp").forward(req, resp);
     }
 
     // POST = ajouter un livre
@@ -37,6 +41,6 @@ public class BookServlet extends HttpServlet {
         if (name != null && !name.isEmpty()) {
             bookDAO.save(new Book(name));
         }
-        resp.sendRedirect(req.getContextPath() + "/books");
+        resp.sendRedirect(req.getContextPath() + "livre/form.jsp");
     }
 }

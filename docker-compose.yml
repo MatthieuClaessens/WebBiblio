@@ -6,13 +6,13 @@ services:
     image: postgres:15
     container_name: postgres_db
     environment:
-      POSTGRES_USER: myuser
-      POSTGRES_PASSWORD: mypassword
+      POSTGRES_USER: webbiblio
+      POSTGRES_PASSWORD: e2ce7969b6
       POSTGRES_DB: mydb
     ports:
       - "5433:5432"
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - pgdata:/var/lib/postgresql/data+
 
   # Interface web pour la DB
   adminer:
