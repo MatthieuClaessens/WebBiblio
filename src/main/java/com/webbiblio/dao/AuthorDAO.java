@@ -1,8 +1,8 @@
-// Communication de données User sur la base de données
+// Communication de données Author sur la base de données
 
 package com.webbiblio.dao;
 
-import com.webbiblio.model.User;
+import com.webbiblio.model.Author;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -10,21 +10,27 @@ import jakarta.persistence.Persistence;
 import java.util.List;
 
 // DAO = couche d'accès à la base de données
-public class UserDAO {
+public class AuthorDAO {
     private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("myPU");
 
-    public void save(User user) {
+    public void save(Author author) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        em.persist(user); // INSERT INTO users
+        em.persist(author); // INSERT INTO authors
         em.getTransaction().commit();
         em.close();
     }
 
-    public List<User> findAll() {
+    public List<Author> findAll() {
         EntityManager em = emf.createEntityManager();
-        List<User> users = em.createQuery("from User", User.class).getResultList();
+        List<Author> author = em.createQuery("from Author", Author.class).getResultList();
         em.close();
-        return users;
+        return author;
+    }
+
+    public Author findById(Long authorId) {
+        EntityManager em = emf.createEntityManager();
+        Author author = em.find(Author.class, authorId);
+        return author;
     }
 }
