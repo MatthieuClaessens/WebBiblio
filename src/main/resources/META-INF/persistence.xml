@@ -9,7 +9,8 @@
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
         <!-- Classe entité -->
-        <class>com.webbiblio.model.User</class>
+        <class>com.webbiblio.model.Author</class>
+        <class>com.webbiblio.model.Book</class>
 
         <!-- Connexion à PostgreSQL (via Docker Compose) -->
         <properties>
