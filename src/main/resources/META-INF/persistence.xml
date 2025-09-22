@@ -10,6 +10,7 @@
 
         <!-- Classe entité -->
         <class>com.webbiblio.model.User</class>
+        <class>com.webbiblio.model.Book</class>
 
         <!-- Connexion à PostgreSQL (via Docker Compose) -->
         <properties>

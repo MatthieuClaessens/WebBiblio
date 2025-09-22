@@ -1,28 +1,46 @@
-// Objet Book
-
 package com.webbiblio.model;
 
 import jakarta.persistence.*;
+import java.lang.String;
 
-// Entité JPA représentant un livre
 @Entity
 @Table(name = "books")
-public class Book{
+public class Book {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // auto-increment
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id; // auto-incrémenté par la BDD
 
-    private String name;
+    private String title;
+    private String isbn;
+    private String publicationDate;
 
+    @ManyToOne
+    @JoinColumn(name = "author_id")
+    private Author author;
+
+    // Constructeur vide obligatoire pour JPA
     public Book() {}
 
-    public Book(String name) {
-        this.name = name;
+    // Constructeur pour créer un Book avec auteurs
+    public Book(String title, String isbn, String publicationDate, Author author) {
+        this.title = title;
+        this.isbn = isbn;
+        this.publicationDate = publicationDate;
+        this.author = (Author) author;
     }
 
-    // Getters et Setters
+    // Getters et setters
     public Long getId() { return id; }
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+
+    public String getTitle() { return title; }
+    public void setTitle(String title) { this.title = title; }
+
+    public String getIsbn() { return isbn; }
+    public void setIsbn(String isbn) { this.isbn = isbn; }
+
+    public String getPublicationDate() { return publicationDate; }
+    public void setPublicationDate(String publicationDate) { this.publicationDate = publicationDate; }
+    public Author getAuthor() { return author; }
+    public void setAuthor(Author author) { this.author = author; }
 }

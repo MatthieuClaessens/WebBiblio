@@ -5,19 +5,18 @@
 <head>
     <title>WebBiblio</title></head>
 <body>
-<section id="auteur"> <!-- Section auteur !-->
+<section id="author"> <!-- Section auteur !-->
     <div>
     <h2>Ajouter un auteur</h2>
-        <a href="auteur/form.jsp"><button type="button">Ajouter</button></a>
-        <a href="auteur/form.jsp"><button type="button">Modifier</button></a>
+        <a href="author/form.jsp"><button type="button">Ajouter</button></a>
+        <a href="author/form.jsp"><button type="button">Modifier</button></a>
     </div>
 </section>
-
-<section id="livre"> <!-- Ajout du livre !-->
+<section id="book"> <!-- Ajout du livre !-->
     <div>
     <h2>Ajouter un livre</h2>
-        <a href="livre/form.jsp"><button type="button">Ajouter</button></a>
-        <a href="livre/form.jsp"><button type="button">Modifier</button></a>
+        <a href="book/form.jsp"><button type="button">Ajouter</button></a>
+        <a href="book/form.jsp"><button type="button">Modifier</button></a>
     </div>
 </section>
 
@@ -25,8 +24,8 @@
     <div>
         <h2>Liste d'auteurs</h2>
         <ul>
-            <c:forEach var="user" items="${users}">
-                <li>${user.name}</li>
+            <c:forEach var="author" items="${author}">
+                <li>${author.name}</li>
             </c:forEach>
         </ul>
     </div>
