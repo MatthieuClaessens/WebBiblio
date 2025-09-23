@@ -12,9 +12,8 @@
         <caption>Liste des auteurs</caption>
         <thead>
         <tr>
-            <th>Titre</th>
-            <th>ISBN</th>
-            <th>Date de publication</th>
+            <th>Nom</th>
+            <th>Prénom</th>
         </tr>
         </thead>
         <tbody>
