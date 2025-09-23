@@ -36,6 +36,7 @@ public class AuthorDAO {
     public Author findById(Long authorId) { // Chercher par l'ID
         EntityManager em = emf.createEntityManager();
         Author author = em.find(Author.class, authorId);
+        em.close();
         return author;
     }
 }
