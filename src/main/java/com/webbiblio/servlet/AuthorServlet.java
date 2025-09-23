@@ -20,6 +20,7 @@ public class AuthorServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // Récupère tous les auteurs et les envoie à la JSP pour affichage
         List<Author> authors = authorDAO.findAll();
         req.setAttribute("authors", authors);
         req.getRequestDispatcher("/author/list.jsp").forward(req, resp);
@@ -27,28 +28,40 @@ public class AuthorServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        String firstname = req.getParameter("firstname");
-        String name = req.getParameter("name");
-        String nationality = req.getParameter("nationality");
-        String booksParam = req.getParameter("books");
+        String action = req.getParameter("action");
 
-        if (firstname != null && !firstname.isEmpty()
-                && name != null && !name.isEmpty()
-                && nationality != null && !nationality.isEmpty()) {
-
-            Author author = new Author(firstname, name, nationality);
-
-            if (booksParam != null && !booksParam.trim().isEmpty()) {
-                String[] titles = booksParam.split(",");
-                for (String title : titles) {
-                    Book book = new Book(title.trim(), "ISBN", "Date de publication", author);
-                    author.addBook(book);
-                }
+        if ("delete".equals(action)) {
+            // Suppression d'un auteur par id
+            String idParam = req.getParameter("authorId");
+            if (idParam != null && !idParam.isEmpty()) {
+                Long authorId = Long.parseLong(idParam);
+                authorDAO.deleteById(authorId);
             }
+        } else {
+            // Ajout d'un auteur
+            String firstname = req.getParameter("firstname");
+            String name = req.getParameter("name");
+            String nationality = req.getParameter("nationality");
+            String booksParam = req.getParameter("books");
 
-            authorDAO.save(author);
+            if (firstname != null && !firstname.isEmpty()
+                    && name != null && !name.isEmpty()
+                    && nationality != null && !nationality.isEmpty()) {
+
+                Author author = new Author(firstname, name, nationality);
+
+                if (booksParam != null && !booksParam.trim().isEmpty()) {
+                    String[] titles = booksParam.split(",");
+                    for (String title : titles) {
+                        Book book = new Book(title.trim(), "ISBN", "Date de publication", author);
+                        author.addBook(book);
+                    }
+                }
+
+                authorDAO.save(author);
+            }
         }
-
+        // Redirige vers la liste des auteurs après ajout ou suppression
         resp.sendRedirect(req.getContextPath() + "/authors");
     }
 }
