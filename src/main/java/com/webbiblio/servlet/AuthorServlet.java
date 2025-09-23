@@ -29,6 +29,8 @@ public class AuthorServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Author> authors = authorDAO.findAll();
+        System.out.println("ok");
+        //String authors = "message";
         req.setAttribute("authors", authors);
         req.getRequestDispatcher("/author/list.jsp").forward(req, resp);
     }
@@ -57,6 +59,6 @@ public class AuthorServlet extends HttpServlet {
                 authorDAO.save(author);
             }
         }
-        resp.sendRedirect(req.getContextPath() + "/authors");
+        resp.sendRedirect(req.getContextPath() + "/author/list.jsp");
     }
 }

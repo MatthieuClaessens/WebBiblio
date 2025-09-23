@@ -9,7 +9,7 @@
 <body>
 <div class="table_component" role="region" tabindex="0">
     <table>
-        <caption>Liste des livres</caption>
+        <caption>Liste des auteurs</caption>
         <thead>
         <tr>
             <th>Titre</th>
@@ -18,11 +18,10 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach var="book" items="${books}">
+        <c:forEach var="a" items="${authors}">
             <tr>
-                <td>${book.titre}</td>
-                <td>${book.isbn}</td>
-                <td>${book.datePublication}</td>
+                <td>${a.firstName}</td>
+                <td>${a.name}</td>
             </tr>
         </c:forEach>
         </tbody>
