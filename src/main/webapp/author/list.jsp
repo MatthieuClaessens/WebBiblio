@@ -27,6 +27,12 @@
         </c:forEach>
         </tbody>
     </table>
+    <form method="post" action="${pageContext.request.contextPath}/authors">
+        <button type="submit" name="action" value="delete">Supprimer</button>
+    </form>
+    <form method="get" action="${pageContext.request.contextPath}/form.jsp">
+        <button type="submit">Ajouter</button>
+    </form>
 </div>
 </body>
 </html>
