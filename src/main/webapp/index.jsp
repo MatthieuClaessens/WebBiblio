@@ -9,14 +9,14 @@
     <div>
     <h2>Ajouter un auteur</h2>
         <a href="author/form.jsp"><button type="button">Ajouter</button></a>
-        <a href="author/form.jsp"><button type="button">Modifier</button></a>
+        <a href="author/list.jsp"><button type="button">Liste</button></a>
     </div>
 </section>
 <section id="book"> <!-- Ajout du livre !-->
     <div>
     <h2>Ajouter un livre</h2>
         <a href="book/form.jsp"><button type="button">Ajouter</button></a>
-        <a href="book/form.jsp"><button type="button">Modifier</button></a>
+        <a href="book/list.jsp"><button type="button">Liste</button></a>
     </div>
 </section>
 
