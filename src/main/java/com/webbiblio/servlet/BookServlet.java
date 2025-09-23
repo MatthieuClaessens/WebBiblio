@@ -33,7 +33,7 @@ public class BookServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Book> books = bookDAO.findAll();
         req.setAttribute("books", books);
-        req.getRequestDispatcher("book/list.jsp").forward(req, resp);
+        req.getRequestDispatcher("/book/list.jsp").forward(req, resp);
     }
 
     /* Modifier un livre
