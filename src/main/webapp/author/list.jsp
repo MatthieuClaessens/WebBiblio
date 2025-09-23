@@ -2,35 +2,32 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <title>Livre - liste</title>
-    <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8" />
+    <title>Liste des auteurs</title>
+    <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 <div class="table_component" role="region" tabindex="0">
     <table>
-        <caption>Liste des livres</caption>
+        <caption>Liste des auteurs</caption>
         <thead>
         <tr>
-            <th>Titre</th>
-            <th>ISBN</th>
-            <th>Date de publication</th>
+            <th>Prénom</th>
+            <th>Nom</th>
+            <th>Nationalité</th>
         </tr>
         </thead>
         <tbody>
-        <c:forEach var="book" items="${books}">
+        <c:forEach var="a" items="${authors}">
             <tr>
-                <td>${book.titre}</td>
-                <td>${book.isbn}</td>
-                <td>${book.datePublication}</td>
+                <td>${a.firstName}</td>
+                <td>${a.name}</td>
+                <td>${a.nationality}</td>
             </tr>
         </c:forEach>
         </tbody>
     </table>
-    <form method="post" action="${pageContext.request.contextPath}/authors">
-        <button type="submit" name="action" value="delete">Supprimer</button>
-    </form>
-    <form method="get" action="${pageContext.request.contextPath}/form.jsp">
+    <form method="get" action="${pageContext.request.contextPath}/author/form.jsp">
         <button type="submit">Ajouter</button>
     </form>
 </div>

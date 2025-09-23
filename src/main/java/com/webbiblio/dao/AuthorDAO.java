@@ -13,7 +13,7 @@ import java.util.List;
 public class AuthorDAO {
     private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("myPU");
 
-    public void save(Author author) {
+    public void save(Author author) { // Ajouter un auteur
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         em.persist(author); // INSERT INTO authors
@@ -21,16 +21,22 @@ public class AuthorDAO {
         em.close();
     }
 
-    public List<Author> findAll() {
+    public void delete(Author author) { // Supprimer un auteur
+        EntityManager em = emf.createEntityManager();
+        em.createQuery("DELETE FROM Author", Author.class);
+    }
+
+    public List<Author> findAll() { //  Chercher tous les auteurs
         EntityManager em = emf.createEntityManager();
         List<Author> author = em.createQuery("from Author", Author.class).getResultList();
         em.close();
         return author;
     }
 
-    public Author findById(Long authorId) {
+    public Author findById(Long authorId) { // Chercher par l'ID
         EntityManager em = emf.createEntityManager();
         Author author = em.find(Author.class, authorId);
+        em.close();
         return author;
     }
 }

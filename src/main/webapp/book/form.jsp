@@ -4,16 +4,20 @@
     <title>WebBiblio - Livre</title>
 </head>
 <body>
-    <h2 class="text-center">Ajouter un Livre</h2>
+    <h2 class="text-center">__ un Livre</h2>
     <form method="post" action="books">
-        <label for="title">test</label>
+        <label for="title">test
         <input type="text" name="title" placeholder="Titre du livre" required/>
-        <label for="author">test</label>
+        </label>
+        <label for="author">test
         <input type="text" name="author" placeholder="Nom de l'auteur" required/>
-        <label for="isbn">test</label>
+        </label>
+        <label for="isbn">test
         <input type="text" name="isbn" placeholder="ISBN" required/>
-        <label for="publicationDate">test</label>
+        </label>
+        <label for="publicationDate">test
         <input type="date" name="publicationDate" placeholder="Date de publication" required/>
+        </label>
         <button type="submit" name="action" value="add">Valider</button>
         <button><a href="${pageContext.request.contextPath}/index.jsp">Annuler</a></button>
     </form>
