@@ -2,9 +2,9 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <title>Livre - liste</title>
-    <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8" />
+    <title>Liste des auteurs</title>
+    <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 <div class="table_component" role="region" tabindex="0">
@@ -12,8 +12,9 @@
         <caption>Liste des auteurs</caption>
         <thead>
         <tr>
-            <th>Nom</th>
             <th>Prénom</th>
+            <th>Nom</th>
+            <th>Nationalité</th>
         </tr>
         </thead>
         <tbody>
@@ -21,14 +22,12 @@
             <tr>
                 <td>${a.firstName}</td>
                 <td>${a.name}</td>
+                <td>${a.nationality}</td>
             </tr>
         </c:forEach>
         </tbody>
     </table>
-    <form method="post" action="${pageContext.request.contextPath}/authors">
-        <button type="submit" name="action" value="delete">Supprimer</button>
-    </form>
-    <form method="get" action="${pageContext.request.contextPath}/form.jsp">
+    <form method="get" action="${pageContext.request.contextPath}/author/form.jsp">
         <button type="submit">Ajouter</button>
     </form>
 </div>
