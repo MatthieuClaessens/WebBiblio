@@ -9,7 +9,9 @@
     <div>
     <h2>Ajouter un auteur</h2>
         <a href="author/form.jsp"><button type="button">Ajouter</button></a>
-        <a href="author/list.jsp"><button type="button">Liste</button></a>
+        <form action="authors" method="get">
+        <button type="submit">Liste</button>
+        </form>
     </div>
 </section>
 <section id="book"> <!-- Ajout du livre !-->
