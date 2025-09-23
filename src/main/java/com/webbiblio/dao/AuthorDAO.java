@@ -21,9 +21,15 @@ public class AuthorDAO {
         em.close();
     }
 
-    public void delete(Author author) { // Supprimer un auteur
+    public void deleteById(Long authorId) { // Suppression d'auteur
         EntityManager em = emf.createEntityManager();
-        em.createQuery("DELETE FROM Author", Author.class);
+        em.getTransaction().begin();
+        Author author = em.find(Author.class, authorId);
+        if (author != null) {
+            em.remove(author);
+        }
+        em.getTransaction().commit();
+        em.close();
     }
 
     public List<Author> findAll() { //  Chercher tous les auteurs
