@@ -63,9 +63,7 @@ public class Author {
     public void setNationality(String nationality) { this.nationality = nationality; }
 
     // Getter pour récupérer la liste des livres de l'auteur
-    public List<Book> getBooks() {
-        return books;
-    }
+    public List<Book> getBooks() { return books; }
 
     /**
      * Méthode pratique pour obtenir directement le nombre de livres
