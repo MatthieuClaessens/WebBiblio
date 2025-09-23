@@ -23,6 +23,13 @@
                 <td>${a.firstName}</td>
                 <td>${a.name}</td>
                 <td>${a.nationality}</td>
+                <td>
+                    <form method="post" action="${pageContext.request.contextPath}/authors" style="margin:0;">
+                        <input type="hidden" name="action" value="delete" />
+                        <input type="hidden" name="authorId" value="${a.id}" />
+                        <button type="submit">Supprimer</button>
+                    </form>
+                </td>
             </tr>
         </c:forEach>
         </tbody>
