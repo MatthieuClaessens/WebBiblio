@@ -1,0 +1,8 @@
+.blue-bg {
+    background-color: #0d6efd; /* bleu bootstrap primary */
+}
+
+.scrollable-list {
+    max-height: 200px;
+    overflow-y: auto;
+}

@@ -1,46 +1,92 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
-<%@ taglib uri="jakarta.tags.core" prefix="c" %>
-<!-- Page JSP simple affichant la liste des utilisateurs et un formulaire d'ajout -->
-<html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
+<html lang="fr">
 <head>
-    <title>WebBiblio</title></head>
+    <meta charset="UTF-8" />
+    <title>WebBiblio</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/ea9b6cde68.js" crossorigin="anonymous" defer></script>
+</head>
 <body>
-<section id="author"> <!-- Section auteur !-->
-    <div>
-    <h2>Ajouter un auteur</h2>
-        <a href="author/form.jsp"><button type="button">Ajouter</button></a>
-        <form action="authors" method="get">
-        <button type="submit">Liste</button>
-        </form>
+<nav class="blue-bg w-100 p-3">
+    <div class="d-flex align-items-center gap-3">
+        <p class="text-white fs-4 mb-0">
+            <i class="fa-solid fa-book-open-reader" style="color: #ffffff;"></i> WebBiblio
+        </p>
+        <input type="text" class="form-control" style="width: 150px; height: 30px;" placeholder="Recherche..." />
     </div>
-</section>
-<section id="book"> <!-- Ajout du livre !-->
-    <div>
-    <h2>Ajouter un livre</h2>
-        <a href="book/form.jsp"><button type="button">Ajouter</button></a>
-        <a href="book/list.jsp"><button type="button">Liste</button></a>
-    </div>
-</section>
+</nav>
 
-<section id="authorList">
-    <div>
-        <h2>Liste d'auteurs</h2>
-        <ul>
-            <c:forEach var="author" items="${author}">
-                <li>${author.name}</li>
+<div class="container mt-4">
+
+    <section id="author" class="mb-4">
+        <h2>Auteurs</h2>
+        <div class="d-flex mb-3">
+            <form method="post" action="${pageContext.request.contextPath}/authors">
+            <a href="author/form.jsp" class="btn btn-success me-2">Ajouter un auteur</a>
+            <a href="authors" class="btn btn-secondary">Voir la liste complète</a>
+            </form>
+        </div>
+        <table class="table table-striped table-bordered">
+            <thead class="table-primary">
+            <tr>
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th>Nationalité</th>
+            </tr>
+            </thead>
+            <tbody>
+            <c:forEach var="author" items="${authors}">
+                <tr>
+                    <td>${author.firstName}</td>
+                    <td>${author.name}</td>
+                    <td>${author.nationality}</td>
+                </tr>
             </c:forEach>
-        </ul>
-    </div>
-</section>
-<section id="bookList">
-    <div>
-        <h2>Liste de livres</h2>
-        <ul>
+            <c:if test="${empty authors}">
+                <tr><td colspan="3" class="text-center text-muted">Aucun auteur enregistré.</td></tr>
+            </c:if>
+            </tbody>
+        </table>
+    </section>
+
+    <section id="book" class="mb-4">
+        <h2>Livres</h2>
+        <div class="d-flex mb-3">
+            <form method="post" action="${pageContext.request.contextPath}/books">
+            <a href="book/form.jsp" class="btn btn-success me-2">Ajouter un livre</a>
+            <a href="${pageContext.request.contextPath}/authors" class="btn btn-secondary">Voir la liste complète</a>
+            </form>
+        </div>
+        <table class="table table-striped table-bordered">
+            <thead class="table-primary">
+            <tr>
+                <th>Titre</th>
+                <th>ISBN</th>
+                <th>Date de publication</th>
+                <th>Auteur</th>
+            </tr>
+            </thead>
+            <tbody>
             <c:forEach var="book" items="${books}">
-                <li>${book.name}</li>
+                <tr>
+                    <td>${book.title}</td>
+                    <td>${book.isbn}</td>
+                    <td>${book.publicationDate}</td>
+                    <td>${book.author.firstName} ${book.author.name}</td>
+                </tr>
             </c:forEach>
-        </ul>
-    </div>
-</section>
+            <c:if test="${empty books}">
+                <tr><td colspan="4" class="text-center text-muted">Aucun livre enregistré.</td></tr>
+            </c:if>
+            </tbody>
+        </table>
+    </section>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
