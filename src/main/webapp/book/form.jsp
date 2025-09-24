@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -5,14 +6,14 @@
 </head>
 <body>
     <h2 class="text-center">__ un Livre</h2>
-    <form method="post" action="books">
+    <form method="post" action="${pageContext.request.contextPath}/books">
         <label for="title">test
         <input type="text" name="title" placeholder="Titre du livre" required/>
         </label>
         <label for="author">test
         <input type="text" name="author" placeholder="Nom de l'auteur" required/>
         </label>
-        <label for="isbn">test
+        <label for=q"isbn">test
         <input type="text" name="isbn" placeholder="ISBN" required/>
         </label>
         <label for="publicationDate">test

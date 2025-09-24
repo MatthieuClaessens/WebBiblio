@@ -18,12 +18,12 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach var="book" items="${books}">
+        <c:forEach var="b" items="${books}">
             <tr>
-                <td>${book.id}</td>
-                <td>${book.titre}</td>
-                <td>${book.isbn}</td>
-                <td>${book.datePublication}</td>
+                <td>${b.id}</td>
+                <td>${b.title}</td>
+                <td>${b.isbn}</td>
+                <td>${b.publicationDate}</td>
             </tr>
         </c:forEach>
         </tbody>
@@ -31,7 +31,7 @@
     <form method="post" action="${pageContext.request.contextPath}/books">
         <button type="submit" name="action" value="delete">Supprimer</button>
     </form>
-    <form method="get" action="${pageContext.request.contextPath}/form.jsp">
+    <form method="get" action="${pageContext.request.contextPath}/book/form.jsp">
         <button type="submit">Ajouter</button>
     </form>
 </div>
