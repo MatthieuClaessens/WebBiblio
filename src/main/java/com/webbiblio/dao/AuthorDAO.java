@@ -45,4 +45,12 @@ public class AuthorDAO {
         em.close();
         return author;
     }
+
+    public void update(Author author) { // Modifier un auteur
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        em.merge(author); // UPDATE
+        em.getTransaction().commit();
+        em.close();
+    }
 }

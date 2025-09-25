@@ -5,10 +5,18 @@
 <html lang="fr">
 <head>
     <title>Liste des auteurs</title>
+    <link rel="stylesheet" href="css/style.css"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/ea9b6cde68.js" crossorigin="anonymous" defer></script>
 </head>
 <body>
+<nav class="blue-bg w-100 p-3">
+    <div class="d-flex align-items-center gap-3">
+        <p class="text-white fs-4 mb-0">
+            <i class="fa-solid fa-book-open-reader" style="color: #ffffff;"></i> WebBiblio
+        </p>
+    </div>
+</nav>
 <div class="container mt-4">
     <h1>Liste des auteurs</h1>
     <table class="table table-striped">
@@ -27,6 +35,11 @@
                         <input type="hidden" name="authorId" value="${a.id}"/>
                         <button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash" style="color: #ffffff;"></i></button>
                     </form>
+                <form method="post" action="${pageContext.request.contextPath}/authors">
+                    <input type="hidden" name="action" value="edit"/>
+                    <input type="hidden" name="authorId" value="${a.id}"/>
+                    <button type="submit" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-to-square" style="color: #ffffff;"></i></button>
+                </form>
                 </td>
             </tr>
         </c:forEach>

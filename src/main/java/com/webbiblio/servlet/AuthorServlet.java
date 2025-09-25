@@ -1,6 +1,7 @@
 package com.webbiblio.servlet;
 
 import com.webbiblio.dao.AuthorDAO;
+import com.webbiblio.dao.BookDAO;
 import com.webbiblio.model.Author;
 import com.webbiblio.model.Book;
 
@@ -20,15 +21,34 @@ public class AuthorServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String action = req.getParameter("action");
+        String authorId = req.getParameter("authorId");
+        BookDAO bookDAO = new BookDAO();
+
+        if ("edit".equals(action) && authorId != null) {
+            Author author = authorDAO.findById(Long.parseLong(authorId));
+            req.setAttribute("author", author);
+            // Suggestions pour autocomplétion
+            req.setAttribute("allBookTitles", bookDAO.findAllTitles());
+            req.setAttribute("bookLetters", bookDAO.findAllFirstLetters());
+            req.setAttribute("filteredBooks", bookDAO.findByFirstLetter(""));
+            req.getRequestDispatcher("/author/form.jsp").forward(req, resp);
+            return;
+        }
+
         // Récupère tous les auteurs et les envoie à la JSP pour affichage
         List<Author> authors = authorDAO.findAll();
         req.setAttribute("authors", authors);
+        req.setAttribute("allBookTitles", bookDAO.findAllTitles());
+        req.setAttribute("bookLetters", bookDAO.findAllFirstLetters());
+        req.setAttribute("filteredBooks", bookDAO.findByFirstLetter(""));
         req.getRequestDispatcher("/author/list.jsp").forward(req, resp);
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         String action = req.getParameter("action");
+        BookDAO bookDAO = new BookDAO();
 
         if ("delete".equals(action)) {
             // Suppression d'un auteur par id
@@ -36,6 +56,26 @@ public class AuthorServlet extends HttpServlet {
             if (idParam != null && !idParam.isEmpty()) {
                 Long authorId = Long.parseLong(idParam);
                 authorDAO.deleteById(authorId);
+            }
+        } else if ("edit".equals(action)) {
+            String authorId = req.getParameter("authorId");
+            if (authorId != null) {
+                Author author = authorDAO.findById(Long.parseLong(authorId));
+                author.setFirstName(req.getParameter("firstname"));
+                author.setName(req.getParameter("name"));
+                author.setNationality(req.getParameter("nationality"));
+                String booksParam = req.getParameter("books");
+                author.getBooks().clear();
+                if (booksParam != null && !booksParam.trim().isEmpty()) {
+                    String[] titles = booksParam.split(",");
+                    for (String title : titles) {
+                        if (!title.trim().isEmpty()) {
+                            Book book = new Book(title.trim(), "ISBN", "Date de publication", author);
+                            author.addBook(book);
+                        }
+                    }
+                }
+                authorDAO.update(author);
             }
         } else {
             // Ajout d'un auteur

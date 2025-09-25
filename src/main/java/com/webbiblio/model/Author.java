@@ -34,13 +34,6 @@ public class Author {
     // Constructeur par défaut requis par JPA
     protected Author() {}
 
-    // Constructeur pratique pour créer un auteur
-    public Author(String firstname, String name, String nationality, List<Book> books) {
-        this.firstname = firstname;
-        this.name = name;
-        this.nationality = nationality;
-    }
-
     // Constructeur pour créer un auteur sans id et sans livres
     public Author(String firstname, String name, String nationality) {
         this.firstname = firstname;
