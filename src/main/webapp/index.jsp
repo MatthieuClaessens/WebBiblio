@@ -22,34 +22,19 @@
 <div class="container mt-4">
 
     <section id="author" class="mb-4">
-        <h2>Auteurs</h2>
         <div class="d-flex mb-3">
             <form method="post" action="${pageContext.request.contextPath}/authors">
-                <a href="author/form.jsp" class="btn btn-success me-2">Ajouter un auteur</a>
-                <a href="authors" class="btn btn-secondary">Voir la liste complète</a>
+                <div class="card">
+                    <h5 class="card-header">Auteurs</h5>
+                    <div class="card-body">
+                        <h5 class="card-title">Special title treatment</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <a href="authors" class="btn btn-secondary"><i class="fa-solid fa-list" style="color: #ffffff;"></i> Liste d'auteurs</a>
+                        <a href="author/form.jsp" class="btn btn-success me-2"><i class="fa-solid fa-user-plus" style="color: #ffffff;"></i> Ajouter un auteur</a>
+                    </div>
+                </div>
             </form>
         </div>
-        <table class="table table-striped table-bordered">
-            <thead class="table-primary">
-            <tr>
-                <th>Prénom</th>
-                <th>Nom</th>
-                <th>Nationalité</th>
-            </tr>
-            </thead>
-            <tbody>
-            <c:forEach var="author" items="${authors}">
-                <tr>
-                    <td>${author.firstName}</td>
-                    <td>${author.name}</td>
-                    <td>${author.nationality}</td>
-                </tr>
-            </c:forEach>
-            <c:if test="${empty authors}">
-                <tr><td colspan="3" class="text-center text-muted">Aucun auteur enregistré.</td></tr>
-            </c:if>
-            </tbody>
-        </table>
     </section>
 
     <section id="book" class="mb-4">

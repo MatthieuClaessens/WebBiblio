@@ -32,7 +32,6 @@ public class AuthorServlet extends HttpServlet {
             req.setAttribute("allBookTitles", bookDAO.findAllTitles());
             req.setAttribute("bookLetters", bookDAO.findAllFirstLetters());
             req.setAttribute("filteredBooks", bookDAO.findByFirstLetter(""));
-            req.getRequestDispatcher("/author/form.jsp").forward(req, resp);
             return;
         }
 

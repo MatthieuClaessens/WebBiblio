@@ -30,16 +30,18 @@
                 <td>${a.name}</td>
                 <td>${a.nationality}</td>
                 <td>
-                    <form method="post" action="${pageContext.request.contextPath}/authors" onsubmit="return confirm('Confirmer la suppression ?');" style="display:inline;">
-                        <input type="hidden" name="action" value="delete"/>
-                        <input type="hidden" name="authorId" value="${a.id}"/>
-                        <button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash" style="color: #ffffff;"></i></button>
-                    </form>
-                <form method="post" action="${pageContext.request.contextPath}/authors">
-                    <input type="hidden" name="action" value="edit"/>
-                    <input type="hidden" name="authorId" value="${a.id}"/>
-                    <button type="submit" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-to-square" style="color: #ffffff;"></i></button>
-                </form>
+                    <div class="d-flex gap-3">
+                        <form method="post" action="${pageContext.request.contextPath}/authors" onsubmit="return confirm('Confirmer la suppression ?');" style="display:inline;">
+                            <input type="hidden" name="action" value="delete"/>
+                            <input type="hidden" name="authorId" value="${a.id}"/>
+                            <button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash" style="color: #ffffff;"></i></button>
+                        </form>
+                        <form method="post" action="${pageContext.request.contextPath}/authors">
+                            <input type="hidden" name="action" value="edit"/>
+                            <input type="hidden" name="authorId" value="${a.id}"/>
+                            <button type="submit" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-to-square" style="color: #ffffff;"></i></button>
+                        </form>
+                    </div>
                 </td>
             </tr>
         </c:forEach>

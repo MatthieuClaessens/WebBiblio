@@ -28,7 +28,7 @@ public class Author {
      * - cascade ALL = toutes les opérations sur l'auteur affectent ses livres
      * - fetch LAZY = les livres ne sont chargés qu'à la demande
      */
-    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private final List<Book> books = new ArrayList<>();
 
     // Constructeur par défaut requis par JPA
