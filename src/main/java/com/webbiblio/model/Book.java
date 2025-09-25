@@ -41,6 +41,8 @@ public class Book {
 
     public String getPublicationDate() { return publicationDate; }
     public void setPublicationDate(String publicationDate) { this.publicationDate = publicationDate; }
+
     public Author getAuthor() { return author; }
     public void setAuthor(Author author) { this.author = author; }
 }
+
