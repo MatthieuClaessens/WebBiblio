@@ -29,32 +29,5 @@ public class BookDAO {
         em.close();
         return books;
     }
-
-    public List<String> findAllTitles() {
-        EntityManager em = emf.createEntityManager();
-        List<String> titles = em.createQuery("SELECT b.title FROM Book b", String.class).getResultList();
-        em.close();
-        return titles;
-    }
-
-    public List<String> findAllFirstLetters() {
-        EntityManager em = emf.createEntityManager();
-        List<String> letters = em.createQuery("SELECT DISTINCT SUBSTRING(b.title, 1, 1) FROM Book b", String.class).getResultList();
-        em.close();
-        return letters;
-    }
-
-    public List<Book> findByFirstLetter(String letter) {
-        EntityManager em = emf.createEntityManager();
-        List<Book> books;
-        if (letter == null || letter.isEmpty()) {
-            books = em.createQuery("FROM Book", Book.class).getResultList();
-        } else {
-            books = em.createQuery("FROM Book b WHERE b.title LIKE :letter", Book.class)
-                    .setParameter("letter", letter + "%")
-                    .getResultList();
-        }
-        em.close();
-        return books;
-    }
 }
+

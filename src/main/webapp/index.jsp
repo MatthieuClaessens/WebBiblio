@@ -4,72 +4,67 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8" />
-    <title>WebBiblio</title>
-    <link rel="stylesheet" href="css/style.css" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <title>WebBiblio - Dashboard</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/style.css" rel="stylesheet"/>
     <script src="https://kit.fontawesome.com/ea9b6cde68.js" crossorigin="anonymous" defer></script>
 </head>
 <body>
-<nav class="blue-bg w-100 p-3">
-    <div class="d-flex align-items-center gap-3">
-        <p class="text-white fs-4 mb-0">
-            <i class="fa-solid fa-book-open-reader" style="color: #ffffff;"></i> WebBiblio
-        </p>
-        <input type="text" class="form-control" style="width: 150px; height: 30px;" placeholder="Recherche..." />
+
+<!-- Navbar simple en haut -->
+<div class="navbar-custom">
+    <i class="fa-solid fa-book-open-reader"></i> WebBiblio
+</div>
+
+<!-- Conteneur principal du dashboard -->
+<div class="dashboard-container">
+    <!-- Wrapper des cartes pour auteurs et livres -->
+    <div class="cards-wrapper">
+
+        <!-- Carte Auteurs -->
+        <div class="card-dashboard">
+            <!-- Icône en haut de la carte -->
+            <i class="fa-solid fa-user card-icon"></i>
+            <!-- Titre de la carte -->
+            <h5>Auteurs</h5>
+            <!-- Description / info rapide -->
+            <p>Gérez vos auteurs : ajoutez, modifiez ou supprimez facilement.</p>
+            <!-- Boutons d'action : Liste et Ajouter -->
+            <div class="d-flex justify-content-center gap-2">
+                <!-- Bouton pour voir la liste des auteurs -->
+                <a href="authors" class="btn btn-list btn-action">
+                    <i class="fa-solid fa-list-ul me-1" style="color:white;"></i> Liste
+                </a>
+                <!-- Bouton pour ajouter un nouvel auteur -->
+                <a href="author/form.jsp" class="btn btn-add btn-action">
+                    <i class="fa-solid fa-user-plus me-1" style="color:white;"></i> Ajouter
+                </a>
+            </div>
+        </div>
+
+        <!-- Carte Livres -->
+        <div class="card-dashboard">
+            <!-- Icône en haut de la carte -->
+            <i class="fa-solid fa-book card-icon"></i>
+            <!-- Titre de la carte -->
+            <h5>Livres</h5>
+            <!-- Description / info rapide -->
+            <p>Ajoutez de nouveaux livres ou consultez la liste complète.</p>
+            <!-- Boutons d'action : Liste et Ajouter -->
+            <div class="d-flex justify-content-center gap-2">
+                <!-- Bouton pour voir la liste des livres -->
+                <a href="books" class="btn btn-list btn-action">
+                    <i class="fa-solid fa-list-ul me-1" style="color:white;"></i> Liste
+                </a>
+                <!-- Bouton pour ajouter un nouveau livre -->
+                <a href="book/form.jsp" class="btn btn-add btn-action">
+                    <i class="fa-solid fa-book me-1" style="color:white;"></i> Ajouter
+                </a>
+            </div>
+        </div>
+
     </div>
-</nav>
-
-<div class="container mt-4">
-
-    <section id="author" class="mb-4">
-        <div class="d-flex mb-3">
-            <form method="post" action="${pageContext.request.contextPath}/authors">
-                <div class="card">
-                    <h5 class="card-header">Auteurs</h5>
-                    <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="authors" class="btn btn-secondary"><i class="fa-solid fa-list" style="color: #ffffff;"></i> Liste d'auteurs</a>
-                        <a href="author/form.jsp" class="btn btn-success me-2"><i class="fa-solid fa-user-plus" style="color: #ffffff;"></i> Ajouter un auteur</a>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </section>
-
-    <section id="book" class="mb-4">
-        <h2>Livres</h2>
-        <div class="d-flex mb-3">
-            <form method="post" action="${pageContext.request.contextPath}/books">
-                <a href="book/form.jsp" class="btn btn-success me-2">Ajouter un livre</a>
-                <a href="${pageContext.request.contextPath}/authors" class="btn btn-secondary">Voir la liste complète</a>
-            </form>
-        </div>
-        <table class="table table-striped table-bordered">
-            <thead class="table-primary">
-            <tr>
-                <th>Titre</th>
-                <th>ISBN</th>
-                <th>Date de publication</th>
-                <th>Auteur</th>
-            </tr>
-            </thead>
-            <tbody>
-            <c:forEach var="book" items="${books}">
-                <tr>
-                    <td>${book.title}</td>
-                    <td>${book.isbn}</td>
-                    <td>${book.publicationDate}</td>
-                    <td>${book.author.firstName} ${book.author.name}</td>
-                </tr>
-            </c:forEach>
-            <c:if test="${empty books}">
-                <tr><td colspan="4" class="text-center text-muted">Aucun livre enregistré.</td></tr>
-            </c:if>
-            </tbody>
-        </table>
-    </section>
-
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
