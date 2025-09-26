@@ -14,20 +14,18 @@ public class AuthorServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private final AuthorDAO authorDAO = new AuthorDAO(); // Instance du DAO pour les auteurs
 
-    // Gère les requêtes GET (affichage des auteurs, formulaire d'ajout/modification)
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String action = req.getParameter("action"); // Récupère l'action à effectuer (add, edit, etc.)
-        String authorId = req.getParameter("authorId"); // Récupère l'ID de l'auteur si nécessaire
+        String action = req.getParameter("action");
+        String authorId = req.getParameter("authorId");
+
         try {
             switch (action != null ? action : "") {
                 case "edit":
-                    // Affiche le formulaire de modification d'un auteur
                     if (notEmpty(authorId)) {
                         Author author = authorDAO.findById(Long.parseLong(authorId));
                         if (author != null) {
                             req.setAttribute("author", author);
-                            // Crée une chaîne des titres des livres pour le formulaire
                             String booksStr = author.getBooks().stream()
                                     .map(Book::getTitle)
                                     .reduce((a, b) -> a + ", " + b)
@@ -37,12 +35,12 @@ public class AuthorServlet extends HttpServlet {
                     }
                     req.getRequestDispatcher("/author/form.jsp").forward(req, resp);
                     return;
+
                 case "add":
-                    // Affiche le formulaire d'ajout d'un auteur
                     req.getRequestDispatcher("/author/form.jsp").forward(req, resp);
                     return;
+
                 default:
-                    // Affiche la liste des auteurs
                     List<Author> authors = authorDAO.findAll();
                     req.setAttribute("authors", authors);
                     req.getRequestDispatcher("/author/list.jsp").forward(req, resp);
@@ -54,42 +52,43 @@ public class AuthorServlet extends HttpServlet {
         }
     }
 
-    // Gère les requêtes POST (ajout, modification, suppression d'un auteur)
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String action = req.getParameter("action");
+
         if (action == null) {
             resp.sendRedirect(req.getContextPath() + "/authors");
             return;
         }
+
         try {
             switch (action) {
                 case "add":
-                    handleAddAuthor(req); // Ajoute un nouvel auteur
+                    handleAddAuthor(req);
                     break;
                 case "edit":
-                    handleEditAuthor(req); // Modifie un auteur existant
+                    handleEditAuthor(req);
                     break;
                 case "delete":
-                    handleDeleteAuthor(req); // Supprime un auteur
+                    handleDeleteAuthor(req);
                     break;
             }
         } catch (Exception e) {
             req.getSession().setAttribute("errorMessage", "Erreur lors de l'opération: " + e.getMessage());
         }
-        resp.sendRedirect(req.getContextPath() + "/authors"); // Redirige vers la liste des auteurs
+
+        resp.sendRedirect(req.getContextPath() + "/authors");
     }
 
-    // Ajoute un nouvel auteur
     private void handleAddAuthor(HttpServletRequest req) {
         String firstname = req.getParameter("firstname");
         String name = req.getParameter("name");
         String nationality = req.getParameter("nationality");
         String booksParam = req.getParameter("books");
+
         if (notEmpty(firstname) && notEmpty(name) && notEmpty(nationality)) {
             Author author = new Author(firstname, name, nationality);
             if (notEmpty(booksParam)) {
-                // Ajoute les livres à l'auteur
                 String[] titles = booksParam.split(",");
                 for (String title : titles) {
                     String t = title.trim();
@@ -99,11 +98,10 @@ public class AuthorServlet extends HttpServlet {
                     }
                 }
             }
-            authorDAO.save(author); // Sauvegarde l'auteur en base
+            authorDAO.save(author);
         }
     }
 
-    // Modifie un auteur existant
     private void handleEditAuthor(HttpServletRequest req) {
         String authorId = req.getParameter("authorId");
         if (notEmpty(authorId)) {
@@ -112,8 +110,8 @@ public class AuthorServlet extends HttpServlet {
                 author.setFirstname(req.getParameter("firstname"));
                 author.setName(req.getParameter("name"));
                 author.setNationality(req.getParameter("nationality"));
-                // Met à jour les livres de l'auteur
                 author.getBooks().clear();
+
                 String booksParam = req.getParameter("books");
                 if (notEmpty(booksParam)) {
                     String[] titles = booksParam.split(",");
@@ -125,20 +123,18 @@ public class AuthorServlet extends HttpServlet {
                         }
                     }
                 }
-                authorDAO.update(author); // Met à jour l'auteur en base
+                authorDAO.update(author);
             }
         }
     }
 
-    // Supprime un auteur
     private void handleDeleteAuthor(HttpServletRequest req) {
         String idParam = req.getParameter("authorId");
         if (notEmpty(idParam)) {
-            authorDAO.deleteById(Long.parseLong(idParam)); // Supprime l'auteur en base
+            authorDAO.deleteById(Long.parseLong(idParam));
         }
     }
 
-    // Vérifie si une chaîne n'est pas vide
     private boolean notEmpty(String s) {
         return s != null && !s.trim().isEmpty();
     }
