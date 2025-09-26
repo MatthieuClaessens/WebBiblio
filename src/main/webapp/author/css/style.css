@@ -1,33 +1,105 @@
+/* WebBiblio principal */
+.navbar-main {
+    color: white;
+    font-weight: bold;
+    font-size: 1.6rem;
+    text-decoration: none;
+    transition: transform 0.2s ease; /* animation pour l'agrandissement */
+}
+
+.navbar-main:hover {
+    transform: scale(1.1); /* agrandissement léger au survol */
+    color: white;
+}
+
+/* Liens secondaires */
+.navbar-secondary {
+    color: #cccccc; /* gris clair */
+    font-size: 1rem;
+    text-decoration: none;
+    font-weight: normal;
+}
+
+.navbar-secondary:hover {
+    color: #bbbbbb; /* léger changement de gris au survol */
+    text-decoration: none;
+}
+
+/* Navbar globale */
+.navbar-custom {
+    background-color: #0d6efd;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: center; /* centre horizontalement */
+    align-items: center;
+    gap: 1rem;
+    font-family: 'Inter', sans-serif;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+
+/* Supprimer l'effet hover bleu par défaut sur les liens secondaires */
+.navbar-secondary:hover {
+    color: #bbbbbb; /* juste un léger changement pour hover */
+    text-decoration: none;
+}
+
+
+/* Conteneur du tableau : permet le scroll horizontal si nécessaire et prend toute la largeur disponible */
 .table_component {
     overflow: auto;
     width: 100%;
 }
 
+/* Style général du tableau */
 .table_component table {
-    border: 1px solid #dededf;
+    border: 1px solid #dededf;   /* bordure grise claire autour du tableau */
     height: 100%;
-    width: 100%;
-    table-layout: fixed;
-    border-collapse: collapse;
-    border-spacing: 1px;
-    text-align: left;
+    width: 100%;                 /* occupe toute la largeur du conteneur */
+    table-layout: fixed;         /* colonnes de largeur fixe */
+    border-collapse: collapse;   /* supprime les espaces entre bordures des cellules */
+    border-spacing: 1px;         /* espacement minimal entre les cellules (ne s’applique qu’avec border-collapse: separate) */
+    text-align: left;            /* texte aligné à gauche par défaut */
 }
 
+/* Caption (titre du tableau) placé en haut et aligné à gauche */
 .table_component caption {
     caption-side: top;
     text-align: left;
 }
 
+/* En-têtes du tableau */
 .table_component th {
-    border: 1px solid #dededf;
-    background-color: #eceff1;
-    color: #000000;
-    padding: 5px;
+    border: 1px solid #dededf;   /* bordure grise claire */
+    background-color: #eceff1;   /* fond légèrement gris */
+    color: #000000;              /* texte noir */
+    padding: 5px;                /* petit padding autour du texte */
 }
 
+/* Cellules du tableau */
 .table_component td {
-    border: 1px solid #dededf;
-    background-color: #ffffff;
-    color: #000000;
-    padding: 5px;
+    border: 1px solid #dededf;   /* bordure grise claire */
+    background-color: #ffffff;   /* fond blanc */
+    color: #000000;              /* texte noir */
+    padding: 5px;                /* petit padding autour du texte */
+}
+
+/* Ligne sélectionnée dans un tableau avec effet hover */
+.table-hover tbody tr.selected {
+    background-color: #d1ecf1;   /* fond bleu clair pour indiquer la sélection */
+}
+
+/* Conteneur des boutons d’action sous le tableau */
+#actionButtons {
+    display: flex;                /* disposition horizontale */
+    gap: 1rem;                    /* espacement entre les boutons */
+    justify-content: center;      /* centre les boutons horizontalement */
+}
+
+/* Boutons d’action : largeur uniforme et centrage du contenu */
+#actionButtons .btn-action {
+    flex: 1;                      /* chaque bouton prend la même largeur */
+    max-width: 150px;             /* largeur maximale sur grands écrans */
+    min-width: 120px;             /* largeur minimale pour que le bouton reste lisible */
+    text-align: center;           /* centre le texte et les icônes à l’intérieur du bouton */
 }

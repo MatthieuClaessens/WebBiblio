@@ -1,82 +1,58 @@
 package com.webbiblio.model;
 
 import jakarta.persistence.*;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
-/**
- * Entité JPA représentant un auteur (User) dans la bibliothèque.
- * Chaque auteur peut avoir plusieurs livres (OneToMany).
- */
-@Entity
-@Table(name = "authors")
+@Entity // Indique que cette classe est une entité JPA
+@Table(name = "authors") // Mappe la classe à la table "authors" en base de données
 public class Author {
-
-    // Identifiant unique de l'auteur (clé primaire auto-incrémentée)
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id // Clé primaire
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-incrémentation
     private Long id;
 
-    // Informations personnelles de l'auteur
-    private String firstname;   // Prénom
-    private String name;        // Nom
-    private String nationality; // Nationalité
+    private String firstname; // Prénom de l'auteur
+    private String name; // Nom de l'auteur
+    private String nationality; // Nationalité de l'auteur
 
-    /**
-     * Relation OneToMany : un auteur peut avoir plusieurs livres.
-     * - mappedBy = "auteur" indique que la relation est gérée côté Book
-     * - cascade ALL = toutes les opérations sur l'auteur affectent ses livres
-     * - fetch LAZY = les livres ne sont chargés qu'à la demande
-     */
-    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private final List<Book> books = new ArrayList<>();
+    // Relation OneToMany : un auteur peut avoir plusieurs livres
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    private List<Book> books = new ArrayList<>();
 
-    // Constructeur par défaut requis par JPA
-    protected Author() {}
+    // Constructeurs
+    public Author() {}
 
-    // Constructeur pratique pour créer un auteur
-    public Author(String firstname, String name, String nationality, List<Book> books) {
-        this.firstname = firstname;
-        this.name = name;
-        this.nationality = nationality;
-    }
-
-    // Constructeur pour créer un auteur sans id et sans livres
     public Author(String firstname, String name, String nationality) {
         this.firstname = firstname;
         this.name = name;
         this.nationality = nationality;
     }
-    // ========================
-    // Getters et Setters
-    // ========================
 
+    // Getters et setters
     public Long getId() { return id; }
-
-    public String getFirstName() { return firstname; }
-    public void setFirstName(String firstname) { this.firstname = firstname; }
-
+    public String getFirstname() { return firstname; }
+    public void setFirstname(String firstname) { this.firstname = firstname; }
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
-
     public String getNationality() { return nationality; }
     public void setNationality(String nationality) { this.nationality = nationality; }
-
-    // Getter pour récupérer la liste des livres de l'auteur
     public List<Book> getBooks() { return books; }
+    public void setBooks(List<Book> books) { this.books = books; }
 
-    /**
-     * Méthode pratique pour obtenir directement le nombre de livres
-     * associées à cet auteur. Utile pour l'affichage dans JSP.
-     */
+    // Retourne le nombre de livres de l'auteur
     public int getBookAmount() {
         return books.size();
     }
 
+    // Ajoute un livre à la liste des livres de l'auteur
     public void addBook(Book book) {
-        if (books != null) {
-            books.add(book);
-        }
-        book.setAuthor(this);
+        books.add(book);
+        book.setAuthor(this); // Définit l'auteur du livre
+    }
+
+    // Supprime un livre de la liste des livres de l'auteur
+    public void removeBook(Book book) {
+        books.remove(book);
+        book.setAuthor(null); // Dissocie le livre de l'auteur
     }
 }
