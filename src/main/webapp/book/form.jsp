@@ -21,8 +21,12 @@
         </div>
 
         <div class="mb-3">
-            <label for="author" class="form-label">Auteur</label>
-            <input type="text" id="author" name="author" class="form-control" placeholder="Nom de l'auteur" required/>
+            <label for="authorId" class="form-label">Auteur</label>
+            <select id="authorId" name="authorId" class="form-select" required>
+                <c:forEach var="a" items="${authors}">
+                    <option value="${a.id}">${a.firstname} ${a.name}</option>
+                </c:forEach>
+            </select>
         </div>
 
         <div class="mb-3">
@@ -41,4 +45,5 @@
 </div>
 </body>
 </html>
+
 

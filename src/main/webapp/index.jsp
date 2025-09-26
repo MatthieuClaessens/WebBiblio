@@ -25,8 +25,8 @@
         <h2>Auteurs</h2>
         <div class="d-flex mb-3">
             <form method="post" action="${pageContext.request.contextPath}/authors">
-            <a href="author/form.jsp" class="btn btn-success me-2">Ajouter un auteur</a>
-            <a href="authors" class="btn btn-secondary">Voir la liste complète</a>
+                <a href="author/form.jsp" class="btn btn-success me-2">Ajouter un auteur</a>
+                <a href="authors" class="btn btn-secondary">Voir la liste complète</a>
             </form>
         </div>
         <table class="table table-striped table-bordered">
@@ -56,8 +56,8 @@
         <h2>Livres</h2>
         <div class="d-flex mb-3">
             <form method="post" action="${pageContext.request.contextPath}/books">
-            <a href="book/form.jsp" class="btn btn-success me-2">Ajouter un livre</a>
-            <a href="${pageContext.request.contextPath}/authors" class="btn btn-secondary">Voir la liste complète</a>
+                <a href="book/form.jsp" class="btn btn-success me-2">Ajouter un livre</a>
+                <a href="${pageContext.request.contextPath}/authors" class="btn btn-secondary">Voir la liste complète</a>
             </form>
         </div>
         <table class="table table-striped table-bordered">
@@ -90,3 +90,4 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+

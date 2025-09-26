@@ -20,7 +20,7 @@ public class BookDAO {
         em.getTransaction().commit();
         em.close();
     }
-     public void delete(Book book) { // Supprimer un livre
+    public void delete(Book book) { // Supprimer un livre
         em.createQuery("DELETE FROM Book");
     }
 
@@ -30,3 +30,4 @@ public class BookDAO {
         return books;
     }
 }
+
