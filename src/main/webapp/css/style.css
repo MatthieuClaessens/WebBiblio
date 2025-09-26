@@ -6,19 +6,45 @@ html, body {
     background: linear-gradient(135deg, #e0f7fa 0%, #ffffff 100%);
 }
 
-/* Navbar */
-.navbar-custom {
-    background-color: #0d6efd;
+/* WebBiblio principal */
+.navbar-main {
     color: white;
-    padding: 1rem 2rem;
     font-weight: bold;
     font-size: 1.6rem;
+    text-decoration: none;
+    transition: transform 0.2s ease; /* animation pour l'agrandissement */
+}
+
+.navbar-main:hover {
+    transform: scale(1.1); /* agrandissement léger au survol */
+    color: white;
+}
+
+/* Liens secondaires */
+.navbar-secondary {
+    color: #cccccc; /* gris clair */
+    font-size: 1rem;
+    text-decoration: none;
+    font-weight: normal;
+}
+
+.navbar-secondary:hover {
+    color: #bbbbbb; /* léger changement de gris au survol */
+    text-decoration: none;
+}
+
+/* Navbar globale */
+.navbar-custom {
+    background-color: #0d6efd;
+    padding: 1rem 2rem;
     display: flex;
+    justify-content: center; /* centre horizontalement */
     align-items: center;
-    justify-content: center;
     gap: 1rem;
+    font-family: 'Inter', sans-serif;
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
+
 
 /* Dashboard layout */
 .dashboard-container {
@@ -96,4 +122,11 @@ html, body {
 
 .btn-list:hover, .btn-add:hover {
     opacity: 0.9 !important;
+}
+
+.selected {
+    background-color: #e3f2fd !important;
+}
+tr[data-id]:hover {
+    cursor: pointer;
 }

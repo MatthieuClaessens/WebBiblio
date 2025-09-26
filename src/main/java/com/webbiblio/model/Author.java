@@ -1,99 +1,58 @@
 package com.webbiblio.model;
 
 import jakarta.persistence.*;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
-/**
- * Classe représentant un auteur dans la bibliothèque.
- * Chaque auteur peut avoir plusieurs livres (relation OneToMany).
- */
-@Entity // On dit à JPA que cette classe correspond à une table dans la base
-@Table(name = "authors") // Le nom de la table dans la base sera "authors"
+@Entity // Indique que cette classe est une entité JPA
+@Table(name = "authors") // Mappe la classe à la table "authors" en base de données
 public class Author {
-
-    // Identifiant unique de l'auteur, auto-généré par la base de données
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id // Clé primaire
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-incrémentation
     private Long id;
 
-    // Informations personnelles de l'auteur
-    private String firstname;   // Prénom
-    private String name;        // Nom
-    private String nationality; // Nationalité
+    private String firstname; // Prénom de l'auteur
+    private String name; // Nom de l'auteur
+    private String nationality; // Nationalité de l'auteur
 
-    /**
-     * Liste des livres de l'auteur
-     * mappedBy="author" : la relation est gérée côté Book
-     * cascade = toutes les opérations sur l'auteur sont répercutées sur ses livres
-     * fetch = EAGER signifie que les livres sont chargés en même temps que l'auteur
-     * orphanRemoval = true supprime les livres orphelins si on les retire de la liste
-     */
+    // Relation OneToMany : un auteur peut avoir plusieurs livres
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
-    private final List<Book> books = new ArrayList<>();
+    private List<Book> books = new ArrayList<>();
 
-    // Constructeur par défaut nécessaire pour JPA
-    protected Author() {}
+    // Constructeurs
+    public Author() {}
 
-    // Constructeur pour créer un auteur facilement
     public Author(String firstname, String name, String nationality) {
         this.firstname = firstname;
         this.name = name;
         this.nationality = nationality;
     }
 
-    // ========================
     // Getters et setters
-    // ========================
+    public Long getId() { return id; }
+    public String getFirstname() { return firstname; }
+    public void setFirstname(String firstname) { this.firstname = firstname; }
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+    public String getNationality() { return nationality; }
+    public void setNationality(String nationality) { this.nationality = nationality; }
+    public List<Book> getBooks() { return books; }
+    public void setBooks(List<Book> books) { this.books = books; }
 
-    public Long getId() {
-        return id;
-    }
-
-    public String getFirstName() {
-        return firstname;
-    }
-
-    public void setFirstName(String firstname) {
-        this.firstname = firstname;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getNationality() {
-        return nationality;
-    }
-
-    public void setNationality(String nationality) {
-        this.nationality = nationality;
-    }
-
-    // Retourne la liste des livres associés à cet auteur
-    public List<Book> getBooks() {
-        return books;
-    }
-
-    /**
-     * Méthode pratique pour obtenir le nombre de livres
-     * associés à cet auteur
-     */
+    // Retourne le nombre de livres de l'auteur
     public int getBookAmount() {
         return books.size();
     }
 
-    /**
-     * Ajoute un livre à l'auteur et lie le livre à cet auteur
-     */
+    // Ajoute un livre à la liste des livres de l'auteur
     public void addBook(Book book) {
-        if (books != null) {
-            books.add(book);
-        }
-        book.setAuthor(this); // On s'assure que la relation est bidirectionnelle
+        books.add(book);
+        book.setAuthor(this); // Définit l'auteur du livre
+    }
+
+    // Supprime un livre de la liste des livres de l'auteur
+    public void removeBook(Book book) {
+        books.remove(book);
+        book.setAuthor(null); // Dissocie le livre de l'auteur
     }
 }

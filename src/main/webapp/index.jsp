@@ -12,10 +12,13 @@
 </head>
 <body>
 
-<!-- Navbar simple en haut -->
-<div class="navbar-custom">
-    <i class="fa-solid fa-book-open-reader"></i> WebBiblio
+<!-- Navbar -->
+<div class="navbar-custom d-flex justify-content-center align-items-center gap-3">
+    <a href="index.jsp" class="navbar-main">
+        <i class="fa-solid fa-book-open-reader"></i> WebBiblio
+    </a>
 </div>
+
 
 <!-- Conteneur principal du dashboard -->
 <div class="dashboard-container">
