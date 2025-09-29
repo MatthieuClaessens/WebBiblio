@@ -48,7 +48,7 @@ Application Jakarta EE déployée sur **Apache Tomcat**, avec une base de donné
 src/
 └── main/
     ├── java/
-    │   └── com/monprojet/biblio/
+    │   └── com/webbiblio
     │       ├── model/       # Entités
     │       ├── dao/         # Accès aux données
     │       ├── service/     # Logique métier
