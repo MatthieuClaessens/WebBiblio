@@ -51,7 +51,6 @@ src/
     │   └── com/webbiblio
     │       ├── model/       # Entités
     │       ├── dao/         # Accès aux données
-    │       ├── service/     # Logique métier
     │       └── servlet/     # Contrôleurs web
     ├── resources/
     │   └── META-INF/persistence.xml  # Configuration JPA
